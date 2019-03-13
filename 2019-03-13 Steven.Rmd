@@ -9,3 +9,24 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r}
+a <- 2
+5 -> b
+```
+
+```{r}
+c <- a*b
+d <- a/c
+```
+# how to use`
+```{r}
+`108今天` <- 13
+```
+#
+```{r}
+e <- 6L
+class (e)
+c*e
+aVector <- c(1,3,5)
+```
+
