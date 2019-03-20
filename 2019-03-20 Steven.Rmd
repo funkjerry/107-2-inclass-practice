@@ -1,0 +1,86 @@
+---
+title: '2019-03-20'
+author: "Steven"
+date: "3/20/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+#dialogue
+```{r}
+dialogue <- c('小明說："明天不用上課。"',
+               '小花說："真的嗎？"')
+
+cat(dialogue, sep="\n")
+```
+
+```{r}
+dialogue <- c("小明說：'明天不用上課。'",
+               "小花說：'真的嗎？'")
+
+cat(dialogue, sep="\n")
+```
+
+```{r}
+1 -> c
+aLogical <- c(T,TRUE,F,FALSE,FALSE)
+class(aLogical)
+b <- ('先誠')
+
+class(b)
+```
+#majors
+```{r}
+studentMajors <- factor(
+  c("經濟系", "中文系", "法律系","社學系")
+)
+typeof(studentMajors)
+levels(studentMajors)
+studentMajors
+as.integer(studentMajors)
+```
+#birthplaces
+```{r}
+birthplaces <- factor(c("桃園市","新竹市","澎湖島","台北市","蘭嶼"))
+typeof(birthplaces)
+levels(birthplaces)
+as.integer(birthplaces)
+```
+
+```{r}
+stringInteger <- c("1","2","-11")
+class(stringInteger) # 無法進行數值運算
+trueInteger <- as.integer(stringInteger)
+class(trueInteger) # 可以進行數值運算
+```
+
+```{r}
+stringInteger
+trueInteger
+sum(trueInteger)
+```
+#time 
+```{r}
+library(lubridate)
+```
+
+```{r}
+dtObject<-ymd_hms("1970-01-01 00:02:53") 
+dtObjectVector<-ymd_hms(
+  c("1970-01-01 00:02:53",
+    "1980-02-11 11:25:22")
+)
+class(dtObject)
+class(dtObjectVector)
+```
+```{r}
+dtObject
+typeof(dtObject)
+levels(dtObject)
+as.integer(dtObject)
+as.double(dtObject)
+```
+
+
