@@ -19,7 +19,8 @@ class(LondonDateTime)
 
 ```{r}
 typeof(LondonDateTime)
-levels(LondonDateTime)
 as.integer(LondonDateTime)
+as.double(LondonDateTime)
+as.double(twDateTime)
 ```
 
