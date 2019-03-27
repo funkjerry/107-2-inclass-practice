@@ -1,0 +1,25 @@
+---
+title: "Untitled"
+author: "Steven Wang"
+date: "2019年3月27日"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(lubridate)
+Sys.timezone()
+twDateTime <- ymd_hms("2019-03-18 15:32:00", tz="Asia/Taipei")
+LondonDateTime <- with_tz(twDateTime,tzone="Europe/London")
+class(LondonDateTime)
+```
+
+```{r}
+typeof(LondonDateTime)
+levels(LondonDateTime)
+as.integer(LondonDateTime)
+```
+
