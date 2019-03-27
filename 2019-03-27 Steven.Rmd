@@ -8,7 +8,7 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
+#Taipei and London time
 ```{r}
 library(lubridate)
 Sys.timezone()
@@ -16,11 +16,27 @@ twDateTime <- ymd_hms("2019-03-18 15:32:00", tz="Asia/Taipei")
 LondonDateTime <- with_tz(twDateTime,tzone="Europe/London")
 class(LondonDateTime)
 ```
-
+#type and calculation
 ```{r}
 typeof(LondonDateTime)
 as.integer(LondonDateTime)
 as.double(LondonDateTime)
 as.double(twDateTime)
+```
+#dmy,hms
+```{r}
+Nowdatetime <- mdy_hms("3/14/2019_15:51:00", tz="Asia/Taipei")
+mdy_hms("3/18/2019_07:32:00", tz="Asia/Taipei")
+```
+#date, month, year
+```{r}
+today <- ymd("2019-03-27", tz="Asia/Taipei")
+todayE <- mdy("March, 27, 2019", tz="Asia/Taipei")
+```
+#between
+```{r}
+as.integer(ymd("1970-01-01"))
+as.integer(ymd("1970-01-30"))
+as.integer(ymd("2019-03-27"))
 ```
 
