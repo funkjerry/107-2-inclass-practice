@@ -33,10 +33,88 @@ mdy_hms("3/18/2019_07:32:00", tz="Asia/Taipei")
 today <- ymd("2019-03-27", tz="Asia/Taipei")
 todayE <- mdy("March, 27, 2019", tz="Asia/Taipei")
 ```
-#between
+#time difference
 ```{r}
 as.integer(ymd("1970-01-01"))
 as.integer(ymd("1970-01-30"))
 as.integer(ymd("2019-03-27"))
 ```
+#calculation
+```{r}
+a <- c(1, 5, -3)
+b <- c(0.5, 12, 2)
+aL <- c(1L, 5L, -3L)
+bL <- c(-2L, -4L, 8L)
+a+b
+aaL <- a+aL
+class(aaL)
+class(aL/bL)
+class(a/aL)
+a/aL
+a
+a+4
+a*3
+a^2
+a^8
+aL^8
+a %% b
+```
+#date calculation
+```{r}
+twDateTime <- ymd_hms("2019-03-18 14:04:00", tz="Asia/Taipei")
+twDateTime+1
+ymd("2019-08-11")-ymd("2000-02-01")
+time1 <- ymd("2019-08-11")
+time2 <- ymd("2000-02-01")
+time1-time2
+```
+```{r}
+startingDate <- ymd("2000-02-17")
+startingDate+years(4)
+startingDate+dyears(4)
+```
+```{r}
+x <- 5
+y <- 7
+x > y
+x < y
+x == y
+x != y
+x4 <- c(1,5,8)
+y4 <- c(5,8)
+
+x4 %in% y4
+x5 <- c("台北市","新北市","高雄市")
+y5 <- c("台北市","新北市")
+
+x5 %in% y5
+x2 <- c(1,NA,10)
+y2 <- c(-1,NA,20)
+
+x3 <- c(NA,"小花")
+y3 <- c(NA,"小華")
+is.na(x2)
+is.na(x2)
+is.integer(x2)
+x3 != y3
+```
+
+```{r}
+sum(x2)
+sum(x2, na.rm = TRUE)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
