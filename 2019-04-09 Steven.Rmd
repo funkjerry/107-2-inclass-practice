@@ -1,0 +1,261 @@
+---
+title: "4/3 HW"
+author: "Steven"
+date: "2019年4月9日"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+x3 <- c("大明","中花")
+y3 <- c("大明","種花")
+```
+
+```{r}
+x3 == y3
+x3 != y3
+```
+#!negation
+```{r}
+!(x3 == y3)
+```
+
+```{r}
+library(readr)
+
+exData2 <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/exData2.csv")
+
+currency <- exData2$幣別
+```
+
+```{r}
+head(currency)#顯示出物件前六個元素值。
+```
+#資料並未被當成類別資料
+```{r}
+class(currency)
+```
+#類別資料才有levels
+```{r}
+levels(currency)
+```
+#更正為factor class，左邊為新物件，右邊為舊物件
+```{r}
+currency <- as. factor(currency)
+```
+
+```{r}
+levels(currency)
+```
+#length():用來數向量內的元素個數
+```{r}
+length(levels(currency))
+```
+
+```{r}
+currency2 <- c("日圓","美元","日圓")
+currency2 == "日圓"
+sum(currency2 == "日圓")
+```
+```{r}
+head(currency)
+sum(currency == "日圓JPY/USD")
+```
+
+#5/4 logical operators
+
+```{r}
+x5 <- c("台北市","新北市","高雄市")
+greatTaipei <- c("台北市","新北市")
+
+x5 %in% greatTaipei
+```
+
+```{r}
+!(x5 %in% greatTaipei)
+```
+
+```{r}
+y5 <- c("女","男","女")
+
+y5 == "女"
+```
+
+```{r}
+!(y5 == "女")
+```
+
+>交集是要圈出"relational operator"為真的元素在物件內的位置
+
+#判斷符合同時來自大台北又是女性
+```{r}
+x5 %in% greatTaipei
+y5 == "女"
+(x5 %in% greatTaipei) & (y5=="女")
+```
+#哪一筆資料是同時來自大台北又是女性
+```{r}
+which((x5 %in% greatTaipei) & (y5 == "女"))
+```
+#判斷符合來自大台北或是女性
+```{r}
+(x5 %in% greatTaipei)
+(y5 == "女")
+(x5 %in% greatTaipei) | (y5 == "女")
+```
+#哪一筆資料是來自大台北或是女性
+```{r}
+which((x5 %in% greatTaipei)|(y5 =="女"))
+```
+#either a or b 交集範圍以外的a 和 b
+```{r}
+x5 %in% greatTaipei
+y5 == "女"
+xor (x5 %in% greatTaipei, y5 == "女")
+which (xor(x5 %in% greatTaipei, y5 == "女"))
+```
+
+綜合練習
+```{r}
+library(readr)
+exData2 <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/exData2.csv")
+date <- as.character(exData2$期間)
+currency <- exData2$幣別
+exchangeRate <- exData2$匯率
+```
+請把date的class存成date class
+```{r}
+class(date)
+```
+
+```{r}
+library(lubridate)
+date <- ymd(date)
+```
+
+```{r}
+class(date)
+```
+1980-08-01之後的資料有多少筆?
+```{r}
+isAfter19800801 <- date >= ymd("1980-08-01")
+sum(isAfter19800801 <- date >= ymd("1980-08-01"))
+```
+
+```{r}
+head(as.integer(date))
+as.integer(ymd("1980-08-01"))
+head(date >= ymd("1980-08-01"))
+```
+
+```{r}
+class(isAfter19800801)
+sum(isAfter19800801)
+```
+
+幣別為"歐元USD/EUR"的資料有多少筆?(705)
+```{r}
+head(currency == "歐元USD/EUR")
+
+isEURO <- currency == "歐元USD/EUR"
+sum(isEURO)
+```
+
+有將currency轉成factor class
+```{r}
+currency <- as.factor(currency)
+```
+
+```{r}
+isEURO <- currency == "歐元USD/EUR"
+sum(isEURO)
+```
+
+exchangerate有多少筆NA(297)
+```{r}
+isExchangeRateNA <- 
+  is.na(exchangeRate)
+sum(isExchangeRateNA)
+```
+
+排除NA後，幣別為"歐元USD/EUR"的資料有多少筆?
+```{r}
+isNotNA <- !is.na(exchangeRate)
+isEURO <- currency == "歐元USD/EUR"
+sum(isNotNA & isEURO)
+```
+
+```{r}
+satisfyBoth <- isNotNA & isEURO
+sum(satisfyBoth)
+```
+
+```{r}
+
+library(readr)
+
+transcriptDataFinal <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/transcriptDataFinal.csv")
+
+courseType <- transcriptDataFinal$`必選修類別（必∕選∕通）`
+
+major <- transcriptDataFinal$學系
+
+studentID <- transcriptDataFinal$學號
+
+grade <- transcriptDataFinal$學期成績
+```
+
+有多少筆資料室來自經濟學系?(16926)
+```{r}
+ecomajor <- major == "經濟學系"
+sum(ecomajor)
+```
+請問學號"5bdS6977b"同學修了多少課?(66)
+```{r}
+sum(studentID == "5bdS6977b")
+```
+請問學號"5bdS6977b"有多少科成績及格?(66)
+```{r}
+sum((studentID == "5bdS6977b")&(grade >= 60))
+```
+有多少筆資料來自經濟系學生且為選修課?(5.5%)
+```{r}
+sum((ecomajor)&(courseType =="選"))
+```
+在經濟系學生且必修課程中，成績不及格占多少比例?
+```{r}
+sum((ecomajor)&(courseType =="必"))
+sum((ecomajor)&(courseType =="必")&(grade <60))
+496/9005
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
