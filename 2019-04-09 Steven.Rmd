@@ -118,7 +118,7 @@ xor (x5 %in% greatTaipei, y5 == "女")
 which (xor(x5 %in% greatTaipei, y5 == "女"))
 ```
 
-綜合練習
+#綜合練習
 ```{r}
 library(readr)
 exData2 <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/exData2.csv")
@@ -126,7 +126,7 @@ date <- as.character(exData2$期間)
 currency <- exData2$幣別
 exchangeRate <- exData2$匯率
 ```
-請把date的class存成date class
+#請把date的class存成date class
 ```{r}
 class(date)
 ```
@@ -139,7 +139,7 @@ date <- ymd(date)
 ```{r}
 class(date)
 ```
-1980-08-01之後的資料有多少筆?
+#1980-08-01之後的資料有多少筆?
 ```{r}
 isAfter19800801 <- date >= ymd("1980-08-01")
 sum(isAfter19800801 <- date >= ymd("1980-08-01"))
@@ -156,7 +156,7 @@ class(isAfter19800801)
 sum(isAfter19800801)
 ```
 
-幣別為"歐元USD/EUR"的資料有多少筆?(705)
+#幣別為"歐元USD/EUR"的資料有多少筆?(705)
 ```{r}
 head(currency == "歐元USD/EUR")
 
@@ -164,7 +164,7 @@ isEURO <- currency == "歐元USD/EUR"
 sum(isEURO)
 ```
 
-有將currency轉成factor class
+#有將currency轉成factor class
 ```{r}
 currency <- as.factor(currency)
 ```
@@ -174,14 +174,14 @@ isEURO <- currency == "歐元USD/EUR"
 sum(isEURO)
 ```
 
-exchangerate有多少筆NA(297)
+#exchangerate有多少筆NA(297)
 ```{r}
 isExchangeRateNA <- 
   is.na(exchangeRate)
 sum(isExchangeRateNA)
 ```
 
-排除NA後，幣別為"歐元USD/EUR"的資料有多少筆?
+#排除NA後，幣別為"歐元USD/EUR"的資料有多少筆?
 ```{r}
 isNotNA <- !is.na(exchangeRate)
 isEURO <- currency == "歐元USD/EUR"
@@ -208,24 +208,24 @@ studentID <- transcriptDataFinal$學號
 grade <- transcriptDataFinal$學期成績
 ```
 
-有多少筆資料室來自經濟學系?(16926)
+#有多少筆資料室來自經濟學系?(16926)
 ```{r}
 ecomajor <- major == "經濟學系"
 sum(ecomajor)
 ```
-請問學號"5bdS6977b"同學修了多少課?(66)
+#請問學號"5bdS6977b"同學修了多少課?(66)
 ```{r}
 sum(studentID == "5bdS6977b")
 ```
-請問學號"5bdS6977b"有多少科成績及格?(66)
+#請問學號"5bdS6977b"有多少科成績及格?(66)
 ```{r}
 sum((studentID == "5bdS6977b")&(grade >= 60))
 ```
-有多少筆資料來自經濟系學生且為選修課?(5.5%)
+#有多少筆資料來自經濟系學生且為選修課?(5.5%)
 ```{r}
 sum((ecomajor)&(courseType =="選"))
 ```
-在經濟系學生且必修課程中，成績不及格占多少比例?
+#在經濟系學生且必修課程中，成績不及格占多少比例?
 ```{r}
 sum((ecomajor)&(courseType =="必"))
 sum((ecomajor)&(courseType =="必")&(grade <60))
