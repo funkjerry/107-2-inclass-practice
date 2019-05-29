@@ -1,0 +1,156 @@
+---
+title: "5/15"
+author: "Steven"
+date: "2019年5月15日"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+StuDF <- data.frame(
+  學號=c(172,214,322,425,517),
+  姓名=c("小明","大雄","胖虎","小新","大白"),
+  成績=c(80,60,90,70,50)
+  )
+StuDF 
+```
+
+```{r}
+colnames(StuDF)[[2]] <- c("name")
+colnames(StuDF)
+StuDF
+```
+
+```{r}
+library(stringr)
+rownames(StuDF)
+rownames(StuDF)<- str_c("第",1:5,"筆")
+rownames(StuDF)
+StuDF
+```
+
+```{r}
+b <- list(
+  元素1=1,
+  元素2="Hello",
+  元素3=TRUE
+)
+```
+
+```{r}
+b[[3]] <- "False"
+b[[5]] <- 7
+b
+```
+
+```{r}
+b[[4]] <-"rock"
+b[["新元素A"]] <- c(3,4,5)
+b$元素6 <- c(T,F,T)
+b
+```
+
+```{r}
+library(readr)
+exData3 <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/exData3.csv",
+                    col_types = cols(
+                      匯率 = col_number(),
+                      期間 = col_character()))
+```
+
+```{r}
+library(lubridate)
+time3<- exData3$期間
+time3<- ymd(time3)
+time3-> exData3$期間
+
+class(exData3$期間)
+```
+
+```{r}
+library(lubridate)
+exData3[[1]] <- ymd(exData3[[1]])
+class(exData3[[1]])
+```
+
+
+```{r}
+library(readr)
+exData3 <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/exData3.csv",
+                    col_types = cols(
+                      匯率 = col_number(),
+                      期間 = col_character()))
+```
+
+```{r}
+exData3[[1]] <- ymd(exData3[[1]])
+class(exData3[[1]])
+exData3[["isAsiaCrisis"]] <- exData3[[1]] >= ymd("1997-06-01") & exData3[[1]] <= ymd("1998-12-01")
+exData3$isAisaCrisis
+```
+
+```{r}
+exData3[exData3$isAsiaCrisis==T ,]
+```
+
+```{r}
+library(readr)
+classSurvey <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/classSurvey.csv")
+```
+
+```{r}
+library(readr)
+transcriptDataFinal <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/transcriptDataFinal.csv")
+```
+
+```{r}
+log<-transcriptDataFinal$學號=="92aS67fee"
+transcriptDataFinal[log,]
+```
+
+```{r}
+easyfunc<- function(x,y){value <- x+y
+return(value)}
+
+```
+
+```{r}
+easyfunc(1,2)
+```
+
+```{r}
+supply_fun<- function(a,b,P){
+  Qs<-a+b*P
+  return(Qs) 
+}
+demand_fun<- function(c,d,P){
+  Qd<-c-d*P
+  return(Qd) 
+}
+```
+#excess demand
+```{r}
+supply_fun(0,0.1,20)
+demand_fun(2,0.3,5)
+supply_fun(0,1,1)
+demand_fun(5,1,1)
+```
+
+```{r}
+gpa_fun <- function(studentID){
+  transcriptDataFinal$學號==studentID -> logiChosenStudent
+
+  subSample <- transcriptDataFinal[logiChosenStudent,]
+
+  sum(subSample$學期成績*subSample$學分數)/
+    sum(subSample$學分數) -> GPA
+  return(GPA)
+}
+
+gpa_fun( "105S60ba1")
+
+```
+

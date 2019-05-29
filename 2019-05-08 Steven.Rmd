@@ -1,0 +1,57 @@
+---
+title: "5/8"
+author: "Steven"
+date: "2019年5月8日"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+x <- as.character(round(runif(10)*100),10)
+x
+```
+
+```{r}
+as.integer(x)>50 -> logicBig
+logicBig
+```
+
+```{r}
+randomGrades <- sample(40:80,15,replace = T)
+randomCredits <- sample(0:3,15,replace=T)
+data3 <- list(
+  成績=randomGrades,
+  學分數=randomCredits
+)
+```
+
+```{r}
+library(stringr)
+```
+
+```{r}
+sample(99:103,15,replace = T)-> yy
+sample(1:12,replace=T)-> mm
+str_c("民國",str_pad(yy,3,"left","0"),"年",mm,"月") -> twDates
+### twDates
+```
+
+```{r}
+str_replace(twDates,"民國","")
+str_replace(twDates,"月","")
+```
+
+```{r}
+twDates
+str_sub (twDates,3,5)->
+```
+
+```{r}
+load("sampledTranscriptData.Rda")
+names(sampledTranscriptData) <- 
+  c('學號','學期成績','學分數','學年','學期','必選修類別（必／選／通）','系級','科目名稱','年級','學屆')
+```
+
