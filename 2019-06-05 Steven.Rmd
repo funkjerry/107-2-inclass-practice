@@ -1,0 +1,56 @@
+---
+title: "2019-06-05"
+author: "Steven"
+date: "2019年6月5日"
+output: html_document
+---
+```{r}
+
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+utility_cobb_douglass2 <- function(x,y,alpha,beta){
+  utilValue <- x^.alpha*y^.beta
+  return(utilValue)
+}
+```
+
+```{r}
+utility_cobb_douglass2(y=2,x=1,beta=0.5,alpha=0.8)
+```
+
+```{r}
+gmailAddress <- c(
+  "tim@gmail.com",
+  "anita",
+  "yellen@gmail.com",
+  "huang@gmail.com"
+)
+```
+
+```{r}
+for(i in gmailAddress){
+  print(i) # 印出studentIds5[[i]]
+}
+```
+
+```{r}
+for(i in gmailAddress[c(1:4)]){
+  print(i) 
+}
+```
+
+```{r}
+for(i in seq_along(gmailAddress)){
+  print(gmailAddress[[i]])
+}
+```
+
+```{r}
+gmailAddress
+```
+
