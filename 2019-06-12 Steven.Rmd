@@ -1,0 +1,115 @@
+---
+title: "6/12 inclass"
+author: "Steven"
+date: "2019年6月12日"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(stringr)
+```
+
+```{r}
+load(url("https://www.dropbox.com/s/duh5aaqgl2f5m3z/loopTranscriptData.Rda?raw=1"))
+studentIds <- unique(transcriptDataFinal$學號) # 全部可能學號
+studentIds5 <- studentIds[1:5] # 前5筆學號
+```
+
+```{r}
+studentIds5
+seq_along(studentIds5)
+```
+
+```{r}
+length(studentIds5)
+1:length(studentIds5)
+```
+
+## sequence source
+```{r}
+studentIds5
+```
+
+## body 
+把任務定義在對「第i個」
+任務：針對studentIds5裡的「第i個」學號進行print()。
+```{r}
+i <- 1
+print(studentIds5[[i]])
+```
+
+## for loop 
+
+使用以下for loop模式，完成對「每個」的任務。
+for(i in seq_along(sequence_source)){
+  body
+}
+```{r}
+for(i in seq_along(studentIds5)){
+  print(studentIds5[[i]])
+}
+```
+
+```{r}
+# 開始設定
+gmailAddress <- c(
+  "tim@gmail.com",
+  "anita",
+  "yellen@gmail.com",
+  "huang@gmail.com"
+)
+cat("起始狀況\n")
+gmailAddress
+
+# for loop
+for(i in seq_along(gmailAddress)){
+  if(!str_detect(gmailAddress[[i]],"@gmail.com")){
+    correctGmailAddress <-
+      str_c(gmailAddress[[i]],"@gmail.com")
+    gmailAddress[[i]] <- correctGmailAddress
+  }
+}
+
+cat("修正後狀況\n")
+gmailAddress
+```
+
+# Commit history
+
+```{r}
+load(url("https://www.dropbox.com/s/qnz9paigf61yjus/commitHistory.Rda?raw=1"))
+```
+## sequence source
+```{r}
+commitHistory[[1]][["author"]]
+```
+##body
+print「第i個」commit的author。
+```{r}
+
+```
+
+##for loop
+```{r}
+for(i in seq_along(commitHistory)){
+  print(commitHistory[[i]][["commit"]][["author"]][["name"]])
+}
+```
+
+```{r}
+for(i in seq_along(commitHistory)){
+  print(commitHistory[[i]][["commit"]][["committer"]][["name"]])
+}
+```
+
+```{r}
+for(i in seq_along(commitHistory)){
+  (commitHistory[[i]][["commit"]][["committer"]][["name"]])==(commitHistory[[i]][["commit"]][["author"]][["name"]]) ->logiresult
+  print(logiresult)
+}
+```
+
